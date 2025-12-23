@@ -5,241 +5,178 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matchfit ID</title>
 
-<!-- Bootstrap -->
+<!-- Bootstrap 5 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- AnimeJS -->
 <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 
-<!-- Icons -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👔</text></svg>">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✨</text></svg>">
 
 <style>
+:root{
+  --black:#0E0E0E;
+  --gold:#C9A24D;
+  --soft:#1a1a1a;
+}
 body{
-  background:#0b0b0b;
-  color:#d4af37;
-  font-family:'Segoe UI',sans-serif;
+  background:var(--black);
+  color:#eee;
+  font-family:'Poppins',sans-serif;
 }
-.gold{color:#d4af37}
+h1,h2,h3,h4{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+}
+.navbar{
+  background:rgba(0,0,0,.8);
+  backdrop-filter: blur(8px);
+}
 .btn-gold{
-  background:#d4af37;color:#000;font-weight:600;
+  background:linear-gradient(135deg,#e5c76b,#b18a2f);
+  color:#000;
+  border:none;
 }
-.btn-gold:hover{background:#f1d16a}
+.btn-gold:hover{opacity:.9}
+.section{
+  padding:80px 0;
+}
 .card{
-  background:#111;border:1px solid #d4af37;
+  background:var(--soft);
+  border:none;
+  border-radius:16px;
 }
-input,select{
-  background:#000!important;color:#d4af37!important;border:1px solid #d4af37!important;
+input{
+  background:#000!important;
+  border:1px solid var(--gold)!important;
+  color:#fff!important;
 }
-.navbar{background:#000}
-.loader{
-  position:fixed;inset:0;background:#000;display:flex;
-  align-items:center;justify-content:center;z-index:9999
+.hero{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
 }
-.spinner{
-  width:60px;height:60px;border:6px solid #333;
-  border-top:6px solid #d4af37;border-radius:50%;
-  animation:spin 1s linear infinite
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top,#C9A24D22,transparent 60%);
+  pointer-events:none;
+}
+.feature-icon{
+  font-size:36px;
+  color:var(--gold);
+}
+.hidden{display:none}
+
+/* Loader */
+#loader{
+  position:fixed;inset:0;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.loader-ring{
+  width:70px;height:70px;
+  border:5px solid #333;
+  border-top:5px solid var(--gold);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
-.hidden{display:none}
 </style>
 </head>
 
 <body>
 
-<div class="loader" id="loader">
-  <div class="spinner"></div>
+<div id="loader">
+  <div class="loader-ring"></div>
 </div>
 
-<nav class="navbar navbar-dark px-3">
-  <span class="navbar-brand gold fw-bold">👔 Matchfit ID</span>
+<nav class="navbar navbar-dark fixed-top px-4">
+  <span class="navbar-brand fw-bold">Matchfit ID</span>
   <div>
-    <button class="btn btn-sm btn-gold" onclick="showPage('login')">Login</button>
-    <button class="btn btn-sm btn-outline-warning" onclick="logout()">Logout</button>
+    <button class="btn btn-sm btn-outline-warning me-2" onclick="show('login')">Sign In</button>
+    <button class="btn btn-sm btn-gold" onclick="logout()">Logout</button>
   </div>
 </nav>
 
-<div class="container my-4">
-
 <!-- HOME -->
-<section id="home">
-  <div class="text-center">
-    <h1 class="fw-bold gold">Temukan Outfit Paling Cocok Untukmu</h1>
-    <p>AI Body Shape • Mix & Match • Virtual Try-On</p>
-    <button class="btn btn-gold btn-lg" onclick="goProtected()">Coba Sekarang Gratis</button>
-  </div>
+<section id="home" class="section hero position-relative">
+<div class="container text-center">
+  <h1 class="display-4 mb-3">Fashion That Truly Fits You</h1>
+  <p class="lead text-light mb-4">
+    AI-powered body analysis, color matching & virtual try-on
+  </p>
+  <button class="btn btn-gold btn-lg px-5" onclick="protectedAccess()">
+    Try Free Now
+  </button>
+</div>
+</section>
 
-  <div class="row mt-4">
-    <div class="col-md-4">
-      <div class="card p-3">
-        <h5>AI Body Shape Detector</h5>
-        <p>Analisis bentuk tubuh & warna kulit</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card p-3">
-        <h5>AI Mix & Match</h5>
-        <p>Rekomendasi outfit lengkap</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card p-3">
-        <h5>Virtual Try-On</h5>
-        <p>Coba outfit secara virtual</p>
-      </div>
+<!-- FEATURES -->
+<section class="section">
+<div class="container">
+<div class="row text-center g-4">
+  <div class="col-md-4">
+    <div class="card p-4 h-100">
+      <div class="feature-icon">📐</div>
+      <h5 class="mt-3">AI Body Shape</h5>
+      <p>Analisis bentuk tubuh & proporsi secara otomatis</p>
     </div>
   </div>
-
-  <h3 class="mt-5">E-Commerce</h3>
-  <div class="row">
-    <div class="col-md-3" repeat>
-      <div class="card p-2 text-center">
-        <p>Jacket Premium</p>
-        <button class="btn btn-sm btn-gold">Beli</button>
-      </div>
+  <div class="col-md-4">
+    <div class="card p-4 h-100">
+      <div class="feature-icon">🎨</div>
+      <h5 class="mt-3">Mix & Match AI</h5>
+      <p>Kombinasi outfit sesuai karakter & acara</p>
     </div>
   </div>
+  <div class="col-md-4">
+    <div class="card p-4 h-100">
+      <div class="feature-icon">🪞</div>
+      <h5 class="mt-3">Virtual Try-On</h5>
+      <p>Lihat hasil outfit langsung di tubuhmu</p>
+    </div>
+  </div>
+</div>
+</div>
 </section>
 
 <!-- LOGIN -->
-<section id="login" class="hidden">
-  <div class="col-md-5 mx-auto card p-4">
-    <h4>Login</h4>
-    <input id="loginEmail" class="form-control mb-2" placeholder="Email">
-    <input id="loginPass" type="password" class="form-control mb-2" placeholder="Password">
-    <div class="form-check mb-2">
-      <input class="form-check-input" type="checkbox" id="remember">
-      <label class="form-check-label">Remember Me</label>
-    </div>
-    <button class="btn btn-gold w-100" onclick="login()">Login</button>
-    <p class="mt-2">Belum punya akun? <a href="#" onclick="showPage('register')">Register</a></p>
-  </div>
+<section id="login" class="section hidden">
+<div class="container">
+<div class="col-md-4 mx-auto card p-4">
+  <h3 class="mb-3 text-center">Sign In</h3>
+  <input id="lEmail" class="form-control mb-3" placeholder="Email">
+  <input id="lPass" type="password" class="form-control mb-3" placeholder="Password">
+  <button class="btn btn-gold w-100" onclick="login()">Login</button>
+  <p class="text-center mt-3">
+    New here? <a href="#" onclick="show('register')" class="text-warning">Create Account</a>
+  </p>
+</div>
+</div>
 </section>
 
 <!-- REGISTER -->
-<section id="register" class="hidden">
-  <div class="col-md-5 mx-auto card p-4">
-    <h4>Register</h4>
-    <input id="regName" class="form-control mb-2" placeholder="Nama">
-    <input id="regEmail" class="form-control mb-2" placeholder="Email">
-    <input id="regPass" type="password" class="form-control mb-2" placeholder="Password">
-    <button class="btn btn-gold w-100" onclick="register()">Daftar</button>
-  </div>
+<section id="register" class="section hidden">
+<div class="container">
+<div class="col-md-4 mx-auto card p-4">
+  <h3 class="mb-3 text-center">Create Account</h3>
+  <input id="rName" class="form-control mb-2" placeholder="Name">
+  <input id="rEmail" class="form-control mb-2" placeholder="Email">
+  <input id="rPass" type="password" class="form-control mb-3" placeholder="Password">
+  <button class="btn btn-gold w-100" onclick="register()">Register</button>
+</div>
+</div>
 </section>
 
 <!-- DASHBOARD -->
-<section id="dashboard" class="hidden">
-  <h3>AI Body Shape Detector</h3>
-  <div class="card p-3">
-    <button class="btn btn-gold" onclick="cameraPermission()">Gunakan Kamera</button>
-    <p class="mt-2" id="cameraMsg"></p>
-    <button class="btn btn-outline-warning mt-2" onclick="analyze()">Rekomendasi Outfit Kamu</button>
-  </div>
-
-  <div id="result" class="mt-4"></div>
-</section>
-
-</div>
-
-<script>
-/* LOADING */
-window.onload=()=>setTimeout(()=>loader.classList.add('hidden'),1200)
-
-/* PAGE CONTROL */
-function showPage(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"))
-  document.getElementById(id).classList.remove("hidden")
-}
-
-/* HASH */
-const hash=p=>btoa(p)
-
-/* AUTH */
-function register(){
-  const email=regEmail.value
-  const pass=regPass.value
-  if(!email.includes("@")||pass.length<6)return alert("Data tidak valid")
-  let users=JSON.parse(localStorage.getItem("users")||"[]")
-  users.push({name:regName.value,email,pass:hash(pass)})
-  localStorage.setItem("users",JSON.stringify(users))
-  alert("Register berhasil")
-  showPage("login")
-}
-
-function login(){
-  let users=JSON.parse(localStorage.getItem("users")||"[]")
-  let u=users.find(x=>x.email==loginEmail.value && x.pass==hash(loginPass.value))
-  if(!u)return alert("Wrong password / email")
-  localStorage.setItem("session",JSON.stringify(u))
-  showPage("dashboard")
-}
-
-function logout(){
-  localStorage.removeItem("session")
-  showPage("home")
-}
-
-function goProtected(){
-  localStorage.getItem("session")?showPage("dashboard"):showPage("login")
-}
-
-/* CAMERA */
-function cameraPermission(){
-  navigator.mediaDevices.getUserMedia({video:true})
-  .then(()=>cameraMsg.innerText="Kamera diizinkan")
-  .catch(()=>cameraMsg.innerText="Kamera ditolak")
-}
-
-/* AI SIMULATION */
-function analyze(){
-  anime({targets:'#result',opacity:[0,1],duration:800})
-  result.innerHTML=`
-  <div class="card p-3">
-    <h5>Hasil Analisis</h5>
-    <p>Bentuk tubuh: Hourglass</p>
-    <p>Rekomendasi: Dress A-Line, warna gold & hitam</p>
-    <button class="btn btn-gold">Coba Virtual Try-On</button>
-    <button class="btn btn-outline-warning mt-2">Belanja Outfit Ini</button>
-  </div>`
-}
-
-/* AUTO LOGIN */
-if(localStorage.getItem("session"))showPage("dashboard")
-</script>
-
-<!-- SERVICE WORKER -->
-<script>
-if('serviceWorker'in navigator){
-const sw=`
-self.addEventListener('install',e=>{
- e.waitUntil(caches.open('mf').then(c=>c.addAll(['./'])))
-})
-self.addEventListener('fetch',e=>{
- e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))
-})
-`
-const blob=new Blob([sw],{type:'text/javascript'})
-navigator.serviceWorker.register(URL.createObjectURL(blob))
-}
-</script>
-
-<!-- MANIFEST -->
-<script>
-const manifest={
- name:"Matchfit ID",
- short_name:"Matchfit",
- start_url:".",
- display:"standalone",
- background_color:"#000",
- theme_color:"#d4af37",
- icons:[{src:"",sizes:"192x192",type:"image/png"}]
-}
-const link=document.createElement("link")
-link.rel="manifest"
-link.href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/json'}))
-document.head.appendChild(link)
-</script>
-
-</body>
-</html>
+<section id="dashboard" class="section hidden">
+<div class="container">
+<h2 class="mb-4">Your AI Style Assistant</h
