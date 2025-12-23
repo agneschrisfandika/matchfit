@@ -5,71 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matchfit ID</title>
 
-<!-- Bootstrap 5 -->
+<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- AnimeJS -->
 <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✨</text></svg>">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --black:#0E0E0E;
-  --gold:#C9A24D;
-  --soft:#1a1a1a;
+  --bg:#0b0b0d;
+  --card:#151518;
+  --gold:#c8a85a;
+  --soft:#888;
 }
+*{scroll-behavior:smooth}
 body{
-  background:var(--black);
-  color:#eee;
-  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:#f1f1f1;
+  font-family:'Inter',sans-serif;
 }
-h1,h2,h3,h4{
+h1,h2,h3{
   font-family:'Playfair Display',serif;
   color:var(--gold);
 }
 .navbar{
-  background:rgba(0,0,0,.8);
-  backdrop-filter: blur(8px);
-}
-.btn-gold{
-  background:linear-gradient(135deg,#e5c76b,#b18a2f);
-  color:#000;
-  border:none;
-}
-.btn-gold:hover{opacity:.9}
-.section{
-  padding:80px 0;
-}
-.card{
-  background:var(--soft);
-  border:none;
-  border-radius:16px;
-}
-input{
-  background:#000!important;
-  border:1px solid var(--gold)!important;
-  color:#fff!important;
+  background:rgba(10,10,12,.75);
+  backdrop-filter: blur(10px);
 }
 .hero{
-  min-height:90vh;
+  min-height:100vh;
   display:flex;
   align-items:center;
+  position:relative;
+  overflow:hidden;
 }
-.hero::after{
-  content:'';
+.hero-bg{
   position:absolute;
   inset:0;
-  background:radial-gradient(circle at top,#C9A24D22,transparent 60%);
-  pointer-events:none;
+  background:
+    radial-gradient(circle at 70% 10%,#c8a85a22,transparent 45%),
+    radial-gradient(circle at 20% 80%,#c8a85a18,transparent 50%);
 }
-.feature-icon{
-  font-size:36px;
-  color:var(--gold);
+.section{padding:100px 0}
+.card{
+  background:linear-gradient(180deg,#18181c,#101013);
+  border-radius:20px;
+  border:1px solid #222;
 }
+.btn-gold{
+  background:linear-gradient(135deg,#e7c873,#b6913e);
+  color:#000;
+  border:none;
+  padding:12px 28px;
+}
+.btn-gold:hover{opacity:.92}
+.feature{
+  transition:.4s;
+}
+.feature:hover{
+  transform:translateY(-8px);
+  border-color:var(--gold);
+}
+input{
+  background:#0d0d10!important;
+  border:1px solid #333!important;
+  color:#fff!important;
+}
+input:focus{border-color:var(--gold)!important}
 .hidden{display:none}
 
 /* Loader */
@@ -77,44 +82,53 @@ input{
   position:fixed;inset:0;
   background:#000;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   z-index:9999;
 }
-.loader-ring{
-  width:70px;height:70px;
-  border:5px solid #333;
-  border-top:5px solid var(--gold);
+.loader-dot{
+  width:14px;height:14px;
+  background:var(--gold);
   border-radius:50%;
-  animation:spin 1s linear infinite;
+  margin:5px;
+  animation:bounce 1s infinite alternate;
 }
-@keyframes spin{to{transform:rotate(360deg)}}
+.loader-dot:nth-child(2){animation-delay:.2s}
+.loader-dot:nth-child(3){animation-delay:.4s}
+@keyframes bounce{
+  to{transform:translateY(-16px);opacity:.3}
+}
 </style>
 </head>
 
 <body>
 
+<!-- LOADER -->
 <div id="loader">
-  <div class="loader-ring"></div>
+  <div class="loader-dot"></div>
+  <div class="loader-dot"></div>
+  <div class="loader-dot"></div>
 </div>
 
+<!-- NAV -->
 <nav class="navbar navbar-dark fixed-top px-4">
-  <span class="navbar-brand fw-bold">Matchfit ID</span>
+  <span class="fw-semibold text-warning">Matchfit ID</span>
   <div>
     <button class="btn btn-sm btn-outline-warning me-2" onclick="show('login')">Sign In</button>
     <button class="btn btn-sm btn-gold" onclick="logout()">Logout</button>
   </div>
 </nav>
 
-<!-- HOME -->
-<section id="home" class="section hero position-relative">
-<div class="container text-center">
-  <h1 class="display-4 mb-3">Fashion That Truly Fits You</h1>
-  <p class="lead text-light mb-4">
-    AI-powered body analysis, color matching & virtual try-on
+<!-- HERO -->
+<section id="home" class="hero">
+<div class="hero-bg"></div>
+<div class="container position-relative text-center">
+  <h1 class="display-4 mb-4">Style That Understands You</h1>
+  <p class="text-light fs-5 mb-5">
+    AI body analysis • Smart color matching • Virtual try-on
   </p>
-  <button class="btn btn-gold btn-lg px-5" onclick="protectedAccess()">
-    Try Free Now
+  <button class="btn btn-gold btn-lg" onclick="protectedAccess()">
+    Try Free for 1 Month
   </button>
 </div>
 </section>
@@ -122,26 +136,23 @@ input{
 <!-- FEATURES -->
 <section class="section">
 <div class="container">
-<div class="row text-center g-4">
+<div class="row g-4">
   <div class="col-md-4">
-    <div class="card p-4 h-100">
-      <div class="feature-icon">📐</div>
-      <h5 class="mt-3">AI Body Shape</h5>
-      <p>Analisis bentuk tubuh & proporsi secara otomatis</p>
+    <div class="card p-4 feature h-100">
+      <h5>AI Body Shape</h5>
+      <p class="text-muted">Deteksi proporsi & bentuk tubuh otomatis</p>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="card p-4 h-100">
-      <div class="feature-icon">🎨</div>
-      <h5 class="mt-3">Mix & Match AI</h5>
-      <p>Kombinasi outfit sesuai karakter & acara</p>
+    <div class="card p-4 feature h-100">
+      <h5>AI Mix & Match</h5>
+      <p class="text-muted">Outfit selaras dengan warna & acara</p>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="card p-4 h-100">
-      <div class="feature-icon">🪞</div>
-      <h5 class="mt-3">Virtual Try-On</h5>
-      <p>Lihat hasil outfit langsung di tubuhmu</p>
+    <div class="card p-4 feature h-100">
+      <h5>Virtual Try-On</h5>
+      <p class="text-muted">Coba outfit secara realistis</p>
     </div>
   </div>
 </div>
@@ -152,12 +163,12 @@ input{
 <section id="login" class="section hidden">
 <div class="container">
 <div class="col-md-4 mx-auto card p-4">
-  <h3 class="mb-3 text-center">Sign In</h3>
+  <h3 class="mb-4 text-center">Welcome Back</h3>
   <input id="lEmail" class="form-control mb-3" placeholder="Email">
-  <input id="lPass" type="password" class="form-control mb-3" placeholder="Password">
-  <button class="btn btn-gold w-100" onclick="login()">Login</button>
+  <input id="lPass" type="password" class="form-control mb-4" placeholder="Password">
+  <button class="btn btn-gold w-100" onclick="login()">Sign In</button>
   <p class="text-center mt-3">
-    New here? <a href="#" onclick="show('register')" class="text-warning">Create Account</a>
+    New user? <a href="#" onclick="show('register')" class="text-warning">Create account</a>
   </p>
 </div>
 </div>
@@ -167,10 +178,10 @@ input{
 <section id="register" class="section hidden">
 <div class="container">
 <div class="col-md-4 mx-auto card p-4">
-  <h3 class="mb-3 text-center">Create Account</h3>
-  <input id="rName" class="form-control mb-2" placeholder="Name">
+  <h3 class="mb-4 text-center">Create Account</h3>
+  <input id="rName" class="form-control mb-2" placeholder="Full Name">
   <input id="rEmail" class="form-control mb-2" placeholder="Email">
-  <input id="rPass" type="password" class="form-control mb-3" placeholder="Password">
+  <input id="rPass" type="password" class="form-control mb-4" placeholder="Password">
   <button class="btn btn-gold w-100" onclick="register()">Register</button>
 </div>
 </div>
@@ -179,4 +190,71 @@ input{
 <!-- DASHBOARD -->
 <section id="dashboard" class="section hidden">
 <div class="container">
-<h2 class="mb-4">Your AI Style Assistant</h
+<h2 class="mb-4">Your Style Dashboard</h2>
+<div class="card p-4">
+  <p class="text-muted">Allow camera or upload photo for AI analysis</p>
+  <button class="btn btn-outline-warning me-2" onclick="camera()">Allow Camera</button>
+  <button class="btn btn-gold" onclick="analyze()">Get Recommendation</button>
+</div>
+<div id="result" class="mt-4"></div>
+</div>
+</section>
+
+<script>
+setTimeout(()=>loader.style.display="none",1300)
+
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"))
+  document.getElementById(id).classList.remove("hidden")
+}
+
+const hash=p=>btoa(p)
+
+function register(){
+  if(rPass.value.length<6)return alert("Password minimal 6 karakter")
+  let u=JSON.parse(localStorage.getItem("users")||"[]")
+  u.push({e:rEmail.value,p:hash(rPass.value)})
+  localStorage.setItem("users",JSON.stringify(u))
+  show("login")
+}
+
+function login(){
+  let u=JSON.parse(localStorage.getItem("users")||"[]")
+  let f=u.find(x=>x.e==lEmail.value && x.p==hash(lPass.value))
+  if(!f)return alert("Wrong email or password")
+  localStorage.setItem("session",JSON.stringify(f))
+  show("dashboard")
+}
+
+function logout(){
+  localStorage.removeItem("session")
+  show("home")
+}
+
+function protectedAccess(){
+  localStorage.getItem("session")?show("dashboard"):show("login")
+}
+
+function camera(){
+  navigator.mediaDevices.getUserMedia({video:true})
+  .then(()=>alert("Camera access granted"))
+  .catch(()=>alert("Camera access denied"))
+}
+
+function analyze(){
+  anime({targets:'#result',opacity:[0,1],translateY:[20,0],duration:700})
+  result.innerHTML=`
+  <div class="card p-4">
+    <h4>AI Recommendation</h4>
+    <p><b>Body Shape:</b> Hourglass</p>
+    <p><b>Style Match:</b> Elegant, Minimal Luxury</p>
+    <button class="btn btn-gold me-2">Virtual Try-On</button>
+    <button class="btn btn-outline-warning">Shop Outfit</button>
+  </div>`
+}
+
+if(localStorage.getItem("session"))show("dashboard")
+</script>
+
+</body>
+</html>
