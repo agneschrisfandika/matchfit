@@ -438,7 +438,7 @@
         let analysisData = null;
         let outfitRecommendations = [];
 
-        const API_KEY_PLACEHOLDER = 'YOUR_GEMINI_API_KEY_HERE';
+        const API_KEY_PLACEHOLDER = 'AIzaSyA1Aj6rpqxVQt-6OCOPsBXPFUce6C2OfKs';
 
         function switchTab(index) {
             const tabs = document.querySelectorAll('.tab');
@@ -468,7 +468,7 @@
         async function callGeminiAPI(prompt) {
             const apiKey = API_KEY_PLACEHOLDER;
             
-            if (apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
+            if (apiKey === 'AIzaSyA1Aj6rpqxVQt-6OCOPsBXPFUce6C2OfKs') {
                 return {
                     error: true,
                     message: 'Silakan masukkan API Key Gemini Anda di bagian script (ganti YOUR_GEMINI_API_KEY_HERE)'
@@ -809,4 +809,4 @@ HANYA JSON.`;
                                 ${visual.adjustments.map(a => `<li>${a}</li>`).join('')}
                             </ul>
                         </div>
-                        `
+                    
