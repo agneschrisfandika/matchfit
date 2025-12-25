@@ -471,7 +471,7 @@
 
     <script>
   // ⚠️ GANTI API KEY DI BAWAH INI DENGAN API KEY GEMINI ANDA
-  const GEMINI_API_KEY = 'MASUKKAN_API_KEY_ANDA_DISINI';
+  const GEMINI_API_KEY = 'AIzaSyA1Aj6rpqxVQt-6OCOPsBXPFUce6C2OfKs';
 
   let analysisData = null;
   let outfitRecommendations = [];
@@ -498,7 +498,7 @@
 
   // ✅ WAJIB async (karena memakai await fetch)
   async function callGeminiAPI(prompt) {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'MASUKKAN_API_KEY_ANDA_DISINI') {
+    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'AIzaSyA1Aj6rpqxVQt-6OCOPsBXPFUce6C2OfKs') {
       return {
         error: true,
         message:
@@ -904,7 +904,9 @@ Berikan HANYA dalam format JSON (tanpa teks tambahan, tanpa markdown):
 </script>
 
 </body>
-</html> function callGeminiAPI(prompt) {
+</html> 
+
+function callGeminiAPI(prompt) {
             if (!GEMINI_API_KEY || GEMINI_API_KEY === 'MASUKKAN_API_KEY_ANDA_DISINI') {
                 return {
                     error: true,
