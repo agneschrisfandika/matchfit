@@ -104,7 +104,7 @@ const CreateInvitation: React.FC<Props> = ({ user, onNavigate }) => {
                 { type: 'wedding', icon: 'fa-heart', label: 'Pernikahan', color: 'bg-gold' },
                 { type: 'birthday', icon: 'fa-birthday-cake', label: 'Ulang Tahun', color: 'bg-pink-500' },
                 { type: 'tahlilan', icon: 'fa-mosque', label: 'Tahlilan', color: 'bg-emerald-700' },
-                { type: 'umkm', icon: 'fa-store', label: 'Bisnis/UMKM', color: 'bg-blue-700' }
+                { type: 'costume', icon: 'fa-masks-theater', label: 'Costume Template', color: 'bg-purple-700' }
               ].map(item => (
                 <button 
                   key={item.type}

@@ -52,7 +52,7 @@ const Dashboard: React.FC<Props> = ({ user, onLogout, onNavigate }) => {
     wedding: 'from-[#C5A059] to-[#E2C285] text-white',
     birthday: 'from-pink-500 to-rose-400 text-white',
     tahlilan: 'from-emerald-800 to-emerald-600 text-white',
-    umkm: 'from-blue-900 to-blue-700 text-white'
+    costume: 'from-purple-900 to-purple-700 text-white'
   };
 
   return (
@@ -130,7 +130,7 @@ const Dashboard: React.FC<Props> = ({ user, onLogout, onNavigate }) => {
             {invitations.map((inv) => {
               const stats = getRSVPStats(inv.id);
               return (
-                <div key={inv.id} className="bg-white rounded-[2.5rem] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-slate-50 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 group relative overflow-hidden">
+                <div key={inv.id} className="bg-white rounded-[2.5rem] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-slate-50 border-slate-50 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 group relative overflow-hidden">
                   {/* Category Badge Floating */}
                   <div className={`absolute top-0 right-0 px-6 py-2 rounded-bl-3xl bg-gradient-to-r ${typeStyles[inv.eventType] || typeStyles.wedding} text-[10px] font-black uppercase tracking-widest shadow-sm`}>
                     {inv.eventType}

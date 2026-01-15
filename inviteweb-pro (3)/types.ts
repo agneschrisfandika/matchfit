@@ -1,5 +1,5 @@
 
-export type EventType = 'wedding' | 'birthday' | 'tahlilan' | 'umkm';
+export type EventType = 'wedding' | 'birthday' | 'tahlilan' | 'costume';
 
 export interface User {
   id: string;
@@ -37,16 +37,4 @@ export interface AppState {
   currentUser: User | null;
   currentView: 'landing' | 'login' | 'register' | 'dashboard' | 'create' | 'invite-view';
   activeInvitationId?: string;
-}
-
-export interface User {
-  id: string;
-  email: string;
-  passwordHash: string;
-  fullName: string;
-}
-
-export enum Theme {
-  LIGHT = 'light',
-  DARK = 'dark',
 }
